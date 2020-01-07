@@ -1,0 +1,23 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.loginBtn{
+    background-color: #e9605c;
+    color: white;
+    margin: 2px;
+}
+.loginBtn:hover{
+    color: white;
+    text-decoration: none;
+    font-size: medium;
+}
+.table{
+    border: 1px solid red;
+    border-top: 2px solid red;
+}
