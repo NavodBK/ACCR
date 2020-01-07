@@ -16,6 +16,7 @@ class InsTableSeeder extends Seeder
         DB::table('ins')->insert([
             'fName' => 'ins',
             'LName' => 'user',
+            'company' => 'aliance',
             'nic' => '982242665v',
             'phone' => '0719448937',
             'email' => 'ins@accr.com',

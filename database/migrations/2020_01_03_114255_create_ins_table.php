@@ -16,6 +16,7 @@ class CreateInsTable extends Migration
         Schema::create('ins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fName');
+            $table->string('company');
             $table->string('lName');
             $table->string('nic')->unique();
             $table->integer('phone')->unique();
