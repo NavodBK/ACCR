@@ -61,11 +61,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    @auth("web")
-                                        <a class="dropdown-item" href="{{route('user.edit')}}">
-                                            Edit profile
-                                        </a>
-                                    @endauth
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
