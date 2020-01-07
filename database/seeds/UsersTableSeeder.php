@@ -16,6 +16,8 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'fName' => 'user',
             'lName' => 'user',
+            'address'=>'test address',
+            'dob' =>'1998.8.11',
             'dln' => '14141414',
             'insNo'=>'12121212',
             'nic' => '982242665v',
