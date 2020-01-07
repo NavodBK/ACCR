@@ -20,8 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('user')->group(function (){
-    Route::get('/', 'userProfileEdit@index')->name('user.edit');
-    Route::post('/','userProfileEdit@update')->name('user.edit.submit');
+    Route::post('/vehicle', 'homeController@vehicleStore')->name('vehicle.store');
+    Route::post('/vehicle/update', 'homeController@vehicleUpdate')->name('vehicle.update');
+    Route::post('/update', 'homeController@userDataUpdate')->name('user.update');
 });
 
 Route::prefix('admin')->group(function (){
