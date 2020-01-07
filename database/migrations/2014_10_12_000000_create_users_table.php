@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->date('dob');
             $table->string('nic')->unique();
             $table->integer('dln');
-            $table->integer('insNo');
             $table->integer('phone');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

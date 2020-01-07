@@ -24,7 +24,7 @@
                  id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
 
-                </ul><span class="navbar-text actions"> <a class="login" href="pages/login/index.html">Log In</a><a class="btn btn-light action-button" role="button" href="pages/reg/index.html">Sign Up</a></span></div>
+                </ul><span class="navbar-text actions"> <a class="login" href="{{route('login')}}">Log In</a><a class="btn btn-light action-button" role="button" href="{{route('register')}}">Sign Up</a></span></div>
         </div>
     </nav>
     <div class="row">

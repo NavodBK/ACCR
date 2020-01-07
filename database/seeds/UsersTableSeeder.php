@@ -19,7 +19,6 @@ class UsersTableSeeder extends Seeder
             'address'=>'test address',
             'dob' =>'1998.8.11',
             'dln' => '14141414',
-            'insNo'=>'12121212',
             'nic' => '982242665v',
             'phone' => '0719448937',
             'email' => 'user@accr.com',

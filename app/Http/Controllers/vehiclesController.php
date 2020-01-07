@@ -24,7 +24,7 @@ class vehiclesController extends Controller
         $user = Auth::user();
         $user_id = $user->nic;
         $vehicles = vehicles::where('driverId','=',$user_id)->get();
-       return ($vehicles);
+        return ($vehicles);
 
     }
 
@@ -74,9 +74,9 @@ class vehiclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $regNum)
     {
-        //
+
     }
 
     /**
@@ -99,7 +99,7 @@ class vehiclesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
