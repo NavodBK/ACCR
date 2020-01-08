@@ -50,6 +50,7 @@
                 <a class="forgot" href="{{ route('password.request') }}">Forgot your password?</a>
             @endif
             <a class="forgot" href="{{'register'}}">Need to Register?</a>
+            <a class="forgot" href="/">Go back Home</a>
 
         </form>
         <div class="center">
