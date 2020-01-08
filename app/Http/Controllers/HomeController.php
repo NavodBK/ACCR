@@ -64,6 +64,15 @@ class HomeController extends Controller
     }
     public function vehicleUpdate(Request $request, $id)
     {
+        $request->validate([
+            'regNum'=>['required','string','max:8','min:5'],
+            'manufac'=>['required'],
+            'model'=>['required'],
+            'color'=>['required'],
+            'insPNo'=>['required'],
+            'insProvider'=>['required'],
+        ]);
+
         DB::table('vehicles')
             ->where('$regNum', '=',$id)
             ->update([

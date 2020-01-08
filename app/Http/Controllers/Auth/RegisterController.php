@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'nic' => ['required', 'string', 'max:255'],
             'dln' => ['required', 'string', 'max:255'],
-            'mobile' => ['required', 'max:10','min:10'],
+            'phone' => ['required', 'max:10','min:10'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'dob'=>$data['dob'],
             'nic' => $data['nic'],
             'dln'=>$data['dln'],
-            'phone'=>$data['mobile'],
+            'phone'=>$data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
