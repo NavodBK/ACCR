@@ -1,31 +1,22 @@
-﻿<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Profile - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-</head>
-
+﻿@extends('layouts.dashLayout')
+@section('content')
 <body id="page-top">
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div class="container-fluid d-flex flex-column p-0">
                 <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
 
-                    <div class="sidebar-brand-text mx-3"><img src="logo01.png" style="width:180px;height:60px;" ></div>
+                    <div class="sidebar-brand-text mx-3"><img src={{asset('img/siteImg/logo.png')}} style="width:180px;height:60px;" ></div>
                 </a>
                 <hr class="sidebar-divider my-0">
-                <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="adminDash.blade.php"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link " href="admins.blade.php"><i class="fas fa-user"></i><span>Admin</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="police.blade.php"><i class="fas fa-table"></i><span>Police</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="rda.blade.php"><i class="fas fa-window-maximize"></i><span>RDA</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="insurance.blade.php"><i class="fas fa-window-maximize"></i><span>Insurance</span></a></li>
-                </ul>
+                    <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('admin')}}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link " href="{{route('admin.admins')}}"><i class="fas fa-user"></i><span>Admin</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('admin.police')}}"><i class="fas fa-table"></i><span>Police</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('admin.rda')}}"><i class="fas fa-window-maximize"></i><span>RDA</span></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('admin.ins')}}"><i class="fas fa-window-maximize"></i><span>Insuarance</span></a></li>
+                    </ul>
+                <div class="tex
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
@@ -41,14 +32,7 @@
                                 </div>
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
-                            <li class="nav-item dropdown no-arrow" role="presentation">
-                                <div class="nav-item dropdown show no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">Admin</span><i class="fa fa-user-circle-o" ></i>
-                                </a>
-                                    <div
-                                        class="dropdown-menu show shadow dropdown-menu-right animated--grow-in" role="menu">
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
-                    </div>
-                    </li>
+
                     </ul>
             </div>
             </nav>
@@ -59,11 +43,11 @@
                         <!-- Bordered tabs-->
                         <ul id="myTab1" role="tablist" class="nav nav-tabs nav-pills with-arrow flex-column flex-sm-row text-center">
                             <li class="nav-item flex-sm-fill">
-                                <a id="contact1-tab" data-toggle="tab" href="#dprofile" role="tab" aria-controls="contact1" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0 border">Admin Profile</a>
+                                <a id="contact1-tab" data-toggle="tab" href="#dprofile" role="tab" aria-controls="contact1" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0 border">Add new insurance staff members</a>
                             </li>
 
                             <li class="nav-item flex-sm-fill">
-                                <a id="contact1-tab" data-toggle="tab" href="#record" role="tab" aria-controls="contact1" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0 border">Records</a>
+                                <a id="contact1-tab" data-toggle="tab" href="#record" role="tab" aria-controls="contact1" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0 border">insurance staff members</a>
                             </li>
 
 
@@ -74,16 +58,17 @@
                             <div id="dprofile" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
                                 <div class="container">
                                     <p>Change or update admin profile</p>
-                                    <form action="/action_page.php" class="was-validated">
+                                    <form action="{{route('admin.ins.new')}}" method="post" class="was-validated">
+                                        @csrf
                                         <div class="form-group">
                                             <label for="firstName">First Name:</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="firstName" required>
+                                            <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="fName" required>
                                             <div class="valid-feedback">Valid.</div>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="lastName">Last Name:</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" name="lastName" required>
+                                            <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" name="lName" required>
                                             <div class="valid-feedback">Valid.</div>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
@@ -94,26 +79,14 @@
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="address">Division:</label>
-                                            <input type="text" class="form-control" id="address" placeholder="Enter Division" name="address" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="address">Branch:</label>
-                                            <input type="text" class="form-control" id="address" placeholder="Enter Branch" name="address" required>
+                                            <label for="address">Phone number:</label>
+                                            <input type="text" class="form-control" id="address" placeholder="Enter Division" name="phone" required>
                                             <div class="valid-feedback">Valid.</div>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                         <div class="form-group">
                                             <label for="identity">NIC / Passport ID:</label>
-                                            <input type="text" class="form-control" id="identity" placeholder="Enter NIC/ Passport ID" name="identity" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="dLicense">Police ID:</label>
-                                            <input type="text" class="form-control" id="dLicense" placeholder="Enter Driving License ID" name="dLicense" required>
+                                            <input type="text" class="form-control" id="identity" placeholder="Enter NIC/ Passport ID" name="nic" required>
                                             <div class="valid-feedback">Valid.</div>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
@@ -130,8 +103,8 @@
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="lastName">Position:</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="Enter Position" name="lastName" required>
+                                            <label for="Company">Company</label>
+                                            <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" name="company" required>
                                             <div class="valid-feedback">Valid.</div>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
@@ -166,52 +139,28 @@
                                     </div>
 
                                     <table class="table table-light table-hover">
+
                                         <thead>
-                                            <tr>
-                                                <th>NIC / Passport ID</th>
-                                                <th>Name</th>
-                                                <th>Branch</th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
+                                        <tr>
+                                            <th>NIC / Passport ID</th>
+                                            <th>Name</th>
+                                            <th>EMAIL</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
                                         </thead>
-                                        <tbody>
+                                        @foreach($ins as $insS)
+                                            <tbody>
                                             <tr>
-                                                <td>Invalid</td>
-                                                <td>Invalid</td>
-                                                <td>Invalid</td>
+                                                <td>{{$insS ->nic}}</td>
+                                                <td>{{$insS->fName}} {{$insS->lName}}</td>
+                                                <td>{{$insS->email}} </td>
                                                 <td><button type="button" class="btn btn-success">Update</button></td>
                                                 <td><button type="button" class="btn btn-danger">Delete</button></td>
                                             </tr>
-                                            <tr>
-                                                    <td>Invalid</td>
-                                                    <td>Invalid</td>
-                                                    <td>Invalid</td>
-                                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                            </tr>
-                                            <tr>
-                                                    <td>Invalid</td>
-                                                    <td>Invalid</td>
-                                                    <td>Invalid</td>
-                                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                            </tr>
-                                            <tr>
-                                                    <td>Invalid</td>
-                                                    <td>Invalid</td>
-                                                    <td>Invalid</td>
-                                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                                </tr>
-                                            <tr>
-                                                    <td>Invalid</td>
-                                                    <td>Invalid</td>
-                                                    <td>Invalid</td>
-                                                    <td><button type="button" class="btn btn-success">Update</button></td>
-                                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
-                                            </tr>
-                                        </tbody>
+
+                                            </tbody>
+                                        @endforeach()
                                     </table>
                                 </div>
 
@@ -231,17 +180,8 @@
                     </div>
 
         </div>
-        <footer class="bg-white sticky-footer">
-            <div class="container my-auto">
-                <div class="text-center my-auto copyright"> <p class="copyright">TARS © 2020 Powered by Government of Sri Lanka </p></div>
-            </div>
-        </footer>
-    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="assets/js/script.min.js"></script>
+            </div></div>
 </body>
+    @endsection
 
-</html>
+

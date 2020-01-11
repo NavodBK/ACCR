@@ -33,47 +33,17 @@ class adminController extends Controller
     public function index()
     {
 
-        $ins = ins::all();
-        $rda = rda::all();
-        $police = police::all();
-        $admin = admin::all();
-        $user = User::all();
+        $ins = ins::count();
+        $rda = rda::count();
+        $police = police::count();
+        $admin = admin::count();
+        $user = User::count();
 
-        $data=array(
-            'ins'=>$ins,
-            'rda'=>$rda,
-            'police'=>$police,
-            'admin'=>$admin,
-            'user'=>$user,
-        );
+
         //return $data;
-        return view('dash/admin/adminDash')->with('staff',$data);
+        return view('dash/admin/adminDash')->with('ins', $ins)->with('rda',$rda)->with('police',$police)->with('admin',$admin)->with('user',$user);
     }
 
-    public function showAddUsers(){
-        return view('dataEdit/addNewUsers');
-    }
-    public function rdaStore(Request $request)
-    {
-        $request->validate([
-            'fName' => ['required', 'string', 'max:255'],
-            'lName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'nic' => ['required', 'string', 'max:255'],
-            'mobile' => ['required', 'max:10','min:10'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        $rda = new rda;
-        $rda->fName = $request->fName;
-        $rda->lName = $request->lName;
-        $rda->email = $request->email;
-        $rda->nic =$request->nic;
-        $rda->phone = $request->mobile;
-        $rda->password= Hash::make($request->password);
-        $rda->save();
 
-        return redirect('admin');
-
-    }
 
 }

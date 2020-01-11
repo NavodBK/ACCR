@@ -21,5 +21,13 @@ class AdminsTableSeeder extends Seeder
             'email' => 'admin@accr.com',
             'password' => Hash::make('password'),
         ]);
+        DB::table('admins')->insert([
+            'fName' => 'admin2',
+            'LName' => 'user2',
+            'nic' => '982242666v',
+            'phone' => '0719448938',
+            'email' => 'admin2@accr.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 }

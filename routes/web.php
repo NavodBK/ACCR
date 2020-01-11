@@ -31,9 +31,17 @@ Route::prefix('admin')->group(function (){
     Route::post('/add', 'adminController@rdaStore')->name('admin.addUser.submit');
 
     Route::get('/ins', 'admin_insController@index')->name('admin.ins');
+    Route::post('/ins/new', 'admin_insController@store')->name('admin.ins.new');
+
     Route::get('/police', 'admin_policeController@index')->name('admin.police');
+    Route::post('/police/new', 'admin_policeController@store')->name('admin.police.new');
+
     Route::get('/admins', 'admin_adminsController@index')->name('admin.admins');
+    Route::post('/admins/new', 'admin_adminsController@store')->name('admin.admins.new');
+    Route::post('admins/delete','admin_adminsController@destroy');
+
     Route::get('/rda', 'admin_rdaController@index')->name('admin.rda');
+    Route::post('/rda/new', 'admin_rdaController@store')->name('admin.rda.new');
 
     Route::get('/login', 'Auth\adminLoginsController@showLogin')->name('admin.login');
     Route::post('/login', 'Auth\adminLoginsController@Login')->name('admin.login.submit');

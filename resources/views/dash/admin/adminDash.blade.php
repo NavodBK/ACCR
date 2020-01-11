@@ -28,7 +28,7 @@
                                                 <div class="row align-items-center no-gutters">
                                                     <div class="col mr-2">
                                                         <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Insurance Companies</span></div>
-                                                        <div class="text-dark font-weight-bold h5 mb-0"><span>23</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0"><span>{{$ins}}</span></div>
                                                     </div>
                                                     <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
                                                 </div>
@@ -41,7 +41,7 @@
                                                 <div class="row align-items-center no-gutters">
                                                     <div class="col mr-2">
                                                         <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Police Officers</span></div>
-                                                        <div class="text-dark font-weight-bold h5 mb-0"><span>8632</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0"><span>{{$police}}</span></div>
                                                     </div>
                                                     <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i></div>
                                                 </div>
@@ -58,7 +58,7 @@
                                                         <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>System Administrators</span></div>
                                                         <div class="row no-gutters align-items-center">
                                                             <div class="col-auto">
-                                                                <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>42</span></div>
+                                                                <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span>{{$admin}}</span></div>
                                                             </div>
 
                                                         </div>
@@ -73,10 +73,22 @@
                                             <div class="card-body">
                                                 <div class="row align-items-center no-gutters">
                                                     <div class="col mr-2">
-                                                        <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Users</span></div>
-                                                        <div class="text-dark font-weight-bold h5 mb-0"><span>2,500,000</span></div>
+                                                        <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>RDA Staff</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0"><span>{{$rda}}</span></div>
                                                     </div>
                                                     <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div class="card shadow border-left-warning py-2">
+                                    <div class="card-body">
+                                        <div class="row align-items-center no-gutters">
+                                            <div class="col mr-2">
+                                                <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Users</span></div>
+                                                <div class="text-dark font-weight-bold h5 mb-0"><span>{{$user}}</span></div>
+                                            </div>
+                                                <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,11 +102,8 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"> <p class="copyright">TARS © 2020 Powered by Government of Sri Lanka </p></div>
-                </div>
-            </footer>
+
             </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+        </body>
 @endsection
 

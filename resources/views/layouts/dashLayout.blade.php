@@ -68,7 +68,7 @@
         </nav>
     </div>
 
-    <div>
+    <div style="margin-top: 15px;">
         @yield('content')
     </div>
 
