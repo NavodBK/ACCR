@@ -47,7 +47,7 @@ class adminController extends Controller
             'user'=>$user,
         );
         //return $data;
-        return view('dash/adminDash')->with('staff',$data);
+        return view('dash/admin/adminDash')->with('staff',$data);
     }
 
     public function showAddUsers(){

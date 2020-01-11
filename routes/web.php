@@ -30,6 +30,10 @@ Route::prefix('admin')->group(function (){
     Route::get('/add', 'adminController@showAddUsers')->name('admin.addUser');
     Route::post('/add', 'adminController@rdaStore')->name('admin.addUser.submit');
 
+    Route::get('/ins', 'admin_insController@index')->name('admin.ins');
+    Route::get('/police', 'admin_policeController@index')->name('admin.police');
+    Route::get('/admins', 'admin_adminsController@index')->name('admin.admins');
+    Route::get('/rda', 'admin_rdaController@index')->name('admin.rda');
 
     Route::get('/login', 'Auth\adminLoginsController@showLogin')->name('admin.login');
     Route::post('/login', 'Auth\adminLoginsController@Login')->name('admin.login.submit');
