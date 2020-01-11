@@ -11,7 +11,7 @@ class vehiclesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('admins')->insert([
+        DB::table('vehicles')->insert([
             'regNum' => 'kt-0586',
             'manufac' => 'honda',
             'model' => 'lancer',
@@ -21,7 +21,7 @@ class vehiclesTableSeeder extends Seeder
             'driverId'=>'982242665v'
         ]);
 
-        DB::table('admins')->insert([
+        DB::table('vehicles')->insert([
             'regNum' => 'kt-0587',
             'manufac' => 'honda',
             'model' => 'vivo',
@@ -30,7 +30,7 @@ class vehiclesTableSeeder extends Seeder
             'insProvider' => 'aliance',
             'driverId'=>'982242665v'
         ]);
-        DB::table('admins')->insert([
+        DB::table('vehicles')->insert([
             'regNum' => 'kt-9587',
             'manufac' => 'toyota',
             'model' => 'yaris',

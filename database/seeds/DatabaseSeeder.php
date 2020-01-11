@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RdaTableSeeder::class);
         $this->call(PoliceTableSeeder::class);
         $this->call(InsTableSeeder::class);
+        $this->call(vehiclesTableSeeder::class);
     }
 }

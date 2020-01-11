@@ -29,52 +29,55 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $user_id = $user->nic;
-        $vehicles = vehicles::where('driverId','=',$user_id)->get();
+        $vehicles = (object)vehicles::where('driverId','=',$user_id)->get();
 
         $data = array([
             'vehicles'=>$vehicles,
             'user'=>$user,
         ]);
 
+
         //return $data;
-        return view('home')->with($data);
+        return view('home')->with('vehicles',$vehicles)->with('user',$user);
 
     }
     public function vehicleStore(Request $request)
     {
-        $request->validate([
-            'regNum'=>['required','string','max:8','min:5'],
-            'manufac'=>['required'],
-            'model'=>['required'],
-            'color'=>['required'],
-            'insPNo'=>['required'],
-            'insProvider'=>['required'],
-        ]);
+//        $request->validate([
+//            'regNum'=>['required','string','max:8','min:5'],
+//            'manufac'=>['required'],
+//            'model'=>['required'],
+//            'color'=>['required'],
+//            'insPNo'=>['required'],
+//            'insProvider'=>['required'],
+//        ]);
+
+        $did = Auth::user()->nic;
         $vehicle = new vehicles;
         $vehicle->regNum = $request->regNum;
-        $vehicle->manufac = $request->manufac;
         $vehicle->model = $request->model;
+        $vehicle->manufac = $request->manufac;
         $vehicle->color = $request->color;
         $vehicle->insPNo = $request->insPNo;
         $vehicle->insProvider = $request->insProvider;
-        $vehicle->driverId = Auth::user()->nic;
+        $vehicle->driverId = $did;
         $vehicle->save();
 
-        return $vehicle;
+        return redirect(route('home'));
     }
-    public function vehicleUpdate(Request $request, $id)
+    public function vehicleUpdate(Request $request)
     {
-        $request->validate([
-            'regNum'=>['required','string','max:8','min:5'],
-            'manufac'=>['required'],
-            'model'=>['required'],
-            'color'=>['required'],
-            'insPNo'=>['required'],
-            'insProvider'=>['required'],
-        ]);
+//        $request->validate([
+//            'regNum'=>['required','string','max:8','min:5'],
+//            'manufac'=>['required'],
+//            'model'=>['required'],
+//            'color'=>['required'],
+//            'insPNo'=>['required'],
+//            'insProvider'=>['required'],
+//        ]);
 
         DB::table('vehicles')
-            ->where('$regNum', '=',$id)
+            ->where('regNum',$request->regNum)
             ->update([
                 'regNum' => $request->regNum,
                 'manufac' =>$request->manufac,
@@ -83,6 +86,13 @@ class HomeController extends Controller
                 'insPNo' => $request->insPNo,
                 'insProvider' => $request->insProvider,
             ]);
+        return redirect(route('home'));
+    }
+    public function vehicleDelete( $id){
+        $vehicle = vehicles::where('regNum',$id)->first();
+        $vehicle->delete();
+        return redirect(route('home'));
+        //return $id;
     }
     public function userDataUpdate(Request $request){
 
@@ -98,19 +108,21 @@ class HomeController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        DB::table('users')
-            ->where('nic','=',Auth::user()->nic)
-            ->update([
-                'fName' => $request['fName'],
-                'lName' => $request['lName'],
-                'address'=>$request['address'],
-                'dob'=>$request['dob'],
-                'nic' => $request['nic'],
-                'dln'=>$request['dln'],
-                'phone'=>$$request['mobile'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
-        return $request;
+
+        $user = Auth::user();
+        $user ->fName = $request['fName'];
+        $user->lName = $request['lName'];
+        $user->address=$request['address'];
+        $user->dob=$request['dob'];
+        $user->nic=$request['nic'];
+        $user->dln=$request['dln'];
+        $user->phone=$request['phone'];
+        $user->email=$request['email'];
+        $user->save();
+
+        return redirect(route('home'));
+
     }
+
+
 }
