@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\report;
+use App\confirmedrReport;
 use Illuminate\Http\Request;
 
 class policeController extends Controller
@@ -23,6 +24,8 @@ class policeController extends Controller
      */
     public function index()
     {
-        return view('dash/policeDash');
+        $reports = report::all();
+        $confirmed = confirmedrReport::all();
+        return view('dash/policeDash')->with('reports',$reports)->with('confirmed',$confirmed);
     }
 }

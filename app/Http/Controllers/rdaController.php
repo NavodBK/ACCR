@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\report;
+use App\confirmedrReport;
 use Illuminate\Http\Request;
 
 class rdaController extends Controller
@@ -23,6 +25,9 @@ class rdaController extends Controller
      */
     public function index()
     {
-        return view('dash/rdaDash');
+        $reports = report::all();
+        $confirmed = confirmedrReport::all();
+        
+        return view('dash/rdaDash')->with('reports',$reports)->with('confirmed',$confirmed);
     }
 }

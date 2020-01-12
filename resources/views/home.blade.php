@@ -243,16 +243,39 @@
 
                         <script>
 
-                            function myMap() {
+                            var marker;
 
-                                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                                var myCenter = new google.maps.LatLng(6.9271, 79.8612);
-                                var mapCanvas = document.getElementById("map");
-                                var mapOptions = {center: myCenter, zoom: 16};
-                                var map = new google.maps.Map(mapCanvas, mapOptions);
-                                var marker = new google.maps.Marker({position:myCenter});
-                                marker.setMap(map);
+
+
+                            function myMap() {
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                    zoom: 8,
+                                    center: {lat: 6.927894063943749, lng: 79.87617351981086 }
+                                });
+
+                                map.addListener('click', function(e) {
+                                    placeMarker(e.latLng, map);
+                                });
                             }
+
+                            function placeMarker(location, map) {
+                                var langtxt = document.getElementById('lang');
+                                var lattxt = document.getElementById('lat');
+                                console.log(location.lat());
+                                lattxt.value  = location.lat();
+                                langtxt.value  = location.lng();
+                                console.log(location.lng());
+                                if ( marker ) {
+                                    marker.setPosition(location);
+                                } else {
+                                    marker = new google.maps.Marker({
+                                        position: location,
+                                        map: map
+                                    });
+                                }
+                            }
+
+
                         </script>
 
                         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmDQvaGFw0yJ3O52ne38tcxnuR9IW97rs&callback=myMap"></script>
@@ -260,13 +283,17 @@
                         <div class="container">
 
 
-                            <form action="/action_page.php" class="was-validated">
+                            <form action="{{route('user.report.submit')}}" class="was-validated" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <label for="rnumbe">Vehicle ID:</label>
-                                    <select class="form-control" required >
-                                        <option value="Car">CBA-2356</option>
-                                        <option value="Bicycle">PB-8799</option>
-                                        <option value="Bike">64-8952</option>
+                                    <input type="text" name="lat" id="lat" value="" hidden>
+                                    <input type="text" name="lon" id="lang" value="" hidden>
+                                    <input type="text" name="driverId" hidden value="{{$user->nic}}">
+                                    <select class="form-control" required name="regNum">
+                                        @foreach($vehicles as $vehicle)
+                                        <option value="{{$vehicle->regNum}}">{{$vehicle->regNum}}</option>
+                                        @endforeach
                                     </select>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
@@ -274,18 +301,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="rnumbe">Date and Time:</label>
-                                    <input type="datetime-local" class="form-control" id="color"name="color" required>
+                                    <input type="datetime-local" class="form-control" id="color" name="dnt" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="rnumbe">Accident Type:</label>
-                                    <select class="form-control" required>
-                                        <option value="Car">Vehicle Rollover</option>
-                                        <option value="Bicycle">Single Car Accident</option>
-                                        <option value="Bike">Rear End Collision</option>
-                                        <option value="Van">Side Impact Collision</option>
-                                        <option value="SUV">Head on Collision</option>
+                                    <select class="form-control" required name="type">
+                                        <option value="Vehicle Rollover">Vehicle Rollover</option>
+                                        <option value="Single Car Accident">Single Car Accident</option>
+                                        <option value="Rear End Collision">Rear End Collision</option>
+                                        <option value="Side Impact Collision">Side Impact Collision</option>
+                                        <option value="Head on Collision">Head on Collision</option>
 
                                     </select>
                                     <div class="valid-feedback">Valid.</div>
@@ -295,26 +322,26 @@
                                     <label for="uname">Casulalities:</label>
                                     <div class="form-group form-check">
                                         <label class="form-check-label">
-                                            Injured <input type="text" class="form-control" id="color" placeholder="Vehicle ID" name="color" >
+                                            Injured <input type="text" class="form-control" id="color" placeholder="Vehicle ID" name="injured" >
 
                                         </label>
                                     </div>
                                     <div class="form-group form-check">
                                         <label class="form-check-label">
-                                            Death <input type="text" class="form-control" id="color" placeholder="Vehicle ID" name="color" >
+                                            Death <input type="text" class="form-control" id="color" placeholder="Vehicle ID" name="death" >
 
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="rnumbe">No of vehicles involved:</label>
-                                    <input type="text" class="form-control" id="rnumber" placeholder="aaa@bbb.xxx" name="rnumbe" >
+                                    <input type="text" class="form-control" id="rnumber" placeholder="aaa@bbb.xxx" name="numOfVehicles" >
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="addinformation">Additional Information:</label>
-                                    <textarea class="form-control" rows="5" id="addinformation"></textarea>
+                                    <textarea class="form-control" rows="5" id="addinformation" name="info"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">
@@ -336,7 +363,7 @@
                                         <div class="invalid-feedback">Check this checkbox to continue.</div>
                                     </label>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Report Accident</button><button type="reset" class="btn btn-danger" style="margin-left:10px;;">Reset</button>
+                                <button type="submit" class="btn btn-primary">Report Accident</button>
                             </form>
                         </div>
 
@@ -349,37 +376,30 @@
                                 <tr>
                                     <th>Date</th>
                                     <th>Vehicle ID</th>
-                                    <th>Location</th>
                                     <th>Description</th>
                                     <th>Status</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($reports as $report)
                                 <tr>
-                                    <td>01/15/2020 04:08 PM
-                                    </td>
-                                    <td>CAA-9856</td>
-                                    <td>Kurana Rd,N </td>
-                                    <td></td>
+                                    <td>{{$report->dnt}}/td>
+                                    <td>{{$report->regNum}}</td>
+                                    <td>{{$report->info}}</td>
                                     <td>Unconfirmed</td>
-                                </tr>
-                                <tr>
-                                    <td>12/21/2019 12:50 PM
+                                    <td>
+                                        <form action="{{route('user.report.delete')}}" method="post">
+                                            @csrf
+                                            <input type="text" name="id" hidden value="{{$report->id}}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </td>
-                                    <td>PB-7856</td>
-                                    <td>HighLevel rd, </td>
-                                    <td></td>
-                                    <td>Confirmed</td>
                                 </tr>
-                                <tr>
-                                    <td>10/30/2019 09:45 AM
-                                    </td>
-                                    <td>CBB-9755</td>
-                                    <td>Kawatayama,</td>
-                                    <td>Need Police Immediately</td>
-                                    <td>Confirmed</td>
-                                </tr>
+
+
+
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -457,8 +477,6 @@
 
             </div>
         </div>
-
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 @endsection

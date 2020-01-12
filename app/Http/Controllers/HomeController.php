@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\vehicles;
+use App\report;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -32,9 +33,10 @@ class HomeController extends Controller
         $user = Auth::user();
         $user_id = $user->nic;
         $vehicles = (object)vehicles::where('driverId','=',$user_id)->get();
+        $reports = (object)report::where('driverId','=',$user_id)->get();
 
         //return $data;
-        return view('home')->with('vehicles',$vehicles)->with('user',$user)->with('vehicles',$vehicles);
+        return view('home')->with('vehicles',$vehicles)->with('user',$user)->with('vehicles',$vehicles)->with('reports',$reports);
 
     }
     public function vehicleStore(Request $request)

@@ -24,6 +24,8 @@ Route::prefix('user')->group(function (){
     Route::post('/vehicle/delete', 'homeController@vehicleDelete')->name('vehicle.delete');
     Route::post('/vehicle', 'homeController@vehicleStore')->name('vehicle.store');
     Route::post('/update', 'homeController@userDataUpdate')->name('user.update');
+    Route::post('/report/new', 'reportsController@store')->name('user.report.submit');
+    Route::post('/report/delete', 'reportsController@destroy')->name('user.report.delete');
 });
 
 Route::prefix('admin')->group(function (){
