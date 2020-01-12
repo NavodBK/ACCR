@@ -96,12 +96,15 @@
                     <div id="vehicle" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
                         <div class="container">
                             <div class="card">
+                                <form action="{{route('vehicle.store')}}" method="post">
+                                    @csrf
                                 <h5 class="card-header">Add Vehicle</h5>
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="vmaker">Vehicle Type:</label>
                                         <br>
-                                        <select class="form-control">
+
+                                        <select class="form-control" name="type">
                                             <option value="Car">Car</option>
                                             <option value="Bicycle">Bicycle</option>
                                             <option value="Bike">Bike</option>
@@ -117,19 +120,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="vmaker">Vehicle Manufaturer:</label>
-                                        <input type="text" class="form-control" id="vmaker" placeholder="vmaker" name="vmaker" required>
+                                        <input type="text" class="form-control" id="vmaker" placeholder="vmaker" name="manufac" required>
                                         <div class="valid-feedback">Valid.</div>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-group">
                                         <label for="vmodel">Model:</label>
-                                        <input type="text" class="form-control" id="vmodel" placeholder="Enter Vehicle Model" name="vmodel" required>
+                                        <input type="text" class="form-control" id="vmodel" placeholder="Enter Vehicle Model" name="model" required>
                                         <div class="valid-feedback">Valid.</div>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-group">
                                         <label for="rnumbe">Registration Number:</label>
-                                        <input type="text" class="form-control" id="rnumber" placeholder="aaa@bbb.xxx" name="rnumbe" required>
+                                        <input type="text" class="form-control" id="rnumber" placeholder="aaa@bbb.xxx" name="regNum" required>
                                         <div class="valid-feedback">Valid.</div>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
@@ -141,38 +144,97 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="rnumbe">Insurance Provider:</label>
-                                        <input type="text" class="form-control" id="color" placeholder="aaa@bbb.xxx" name="color" required>
+                                        <input type="text" class="form-control" id="color" placeholder="aaa@bbb.xxx" name="insProvider" required>
                                         <div class="valid-feedback">Valid.</div>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-group">
                                         <label for="rnumbe">Insurance ID:</label>
-                                        <input type="text" class="form-control" id="color" placeholder="aaa@bbb.xxx" name="color" required>
-                                        <div class="valid-feedback">Valid.</div>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="rnumbe">Insurance Package:</label>
-                                        <input type="text" class="form-control" id="color" placeholder="aaa@bbb.xxx" name="color" required>
+                                        <input type="text" class="form-control" id="color" placeholder="aaa@bbb.xxx" name="insPNo" required>
                                         <div class="valid-feedback">Valid.</div>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Add Vehicle</button>
                                 </div>
+                                </form>
+                                </div>
                             </div>
+
                             <div class="card">
-                                <h5 class="card-header">My Vehicles</h5>
+                                <h5 class="card-header" style="margin-top: 20px;">My Vehicles</h5>
                                 <div class="card-body">
-                                    <h5 class="card-title"></h5>
-                                    <p class="card-text"></p>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                    <button type="submit" class="btn btn-primary">Remove</button>
+                                    @foreach($vehicles as $vehicle)
+                                        <form action="{{route('vehicle.store')}}" method="post">
+                                            @csrf
+                                            <h5 class="card-header" style="margin-top: 20px;">{{$vehicle->regNum}}</h5>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="vmaker">Vehicle Type:</label>
+                                                    <br>
+                                                    <select class="form-control" name="type" >
+                                                        <option value="Car" selected>Car</option>
+                                                        <option value="Bike">Bike</option>
+                                                        <option value="Van">Van</option>
+                                                        <option value="SUV">SUV</option>
+                                                        <option value="Lorry">Lorry</option>
+                                                        <option value="Bus">Bus</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                    <div class="valid-feedback">Valid.</div>
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="vmaker">Vehicle Manufaturer:</label>
+                                                    <input type="text" class="form-control" id="vmaker" placeholder="vmaker" name="manufac" required value="{{$vehicle->manufac}}">
+                                                    <div class="valid-feedback">Valid.</div>
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="vmodel">Model:</label>
+                                                    <input type="text" class="form-control" id="vmodel" placeholder="Enter Vehicle Model" name="model" required value="{{$vehicle->model}}">
+                                                    <div class="valid-feedback">Valid.</div>
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rnumbe">Registration Number:</label>
+                                                    <input type="text" class="form-control" id="rnumber" placeholder="aaa@bbb.xxx" name="regNum" required value="{{$vehicle->regNum}}">
+                                                    <div class="valid-feedback">Valid.</div>
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rnumbe">Color:</label>
+                                                    <input type="text" class="form-control" id="color" placeholder="aaa@bbb.xxx" name="color" required value="{{$vehicle->color}}">
+                                                    <div class="valid-feedback">Valid.</div>
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rnumbe">Insurance Provider:</label>
+                                                    <input type="text" class="form-control" id="color" placeholder="aaa@bbb.xxx" name="insProvider" required value="{{$vehicle->insProvider}}">
+                                                    <div class="valid-feedback">Valid.</div>
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rnumbe">Insurance ID:</label>
+                                                    <input type="text" class="form-control" id="color" placeholder="aaa@bbb.xxx" name="insPNo" required value="{{$vehicle->insPNo}}">
+                                                    <div class="valid-feedback">Valid.</div>
+                                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Update</button>
+
+                                            </div>
+                                        </form>
+                                        <form action="{{route('vehicle.delete')}}" method="post">
+                                            @csrf
+                                            <input type="text" name="id" hidden value="{{$vehicle->id}}">
+                                            <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                                        </form>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
 
-                    </div>
 
                     <div id="report" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
 
@@ -201,12 +263,10 @@
                             <form action="/action_page.php" class="was-validated">
                                 <div class="form-group">
                                     <label for="rnumbe">Vehicle ID:</label>
-                                    <select class="form-control" required>
+                                    <select class="form-control" required >
                                         <option value="Car">CBA-2356</option>
                                         <option value="Bicycle">PB-8799</option>
                                         <option value="Bike">64-8952</option>
-
-
                                     </select>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>

@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('user')->group(function (){
     Route::post('/vehicle/update', 'homeController@vehicleUpdate')->name('vehicle.update');
-    Route::get('/vehicle/delete/{id}', 'homeController@vehicleDelete')->name('vehicle.delete');
+    Route::post('/vehicle/delete', 'homeController@vehicleDelete')->name('vehicle.delete');
     Route::post('/vehicle', 'homeController@vehicleStore')->name('vehicle.store');
     Route::post('/update', 'homeController@userDataUpdate')->name('user.update');
 });

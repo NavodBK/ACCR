@@ -13,6 +13,7 @@ class vehiclesTableSeeder extends Seeder
     {
         DB::table('vehicles')->insert([
             'regNum' => 'kt-0586',
+            'type' => 'car',
             'manufac' => 'honda',
             'model' => 'lancer',
             'color' => 'red',
@@ -23,6 +24,7 @@ class vehiclesTableSeeder extends Seeder
 
         DB::table('vehicles')->insert([
             'regNum' => 'kt-0587',
+            'type' => 'van',
             'manufac' => 'honda',
             'model' => 'vivo',
             'color' => 'black',
@@ -32,6 +34,7 @@ class vehiclesTableSeeder extends Seeder
         ]);
         DB::table('vehicles')->insert([
             'regNum' => 'kt-9587',
+            'type' => 'car',
             'manufac' => 'toyota',
             'model' => 'yaris',
             'color' => 'blue',

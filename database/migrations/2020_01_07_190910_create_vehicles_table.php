@@ -17,6 +17,7 @@ class CreateVehiclesTable extends Migration
             $table->bigIncrements('id');
             $table->string('regNum')->unique();
             $table->string('manufac');
+            $table->string('type');
             $table->string('model');
             $table->string('color');
             $table->string('insPNo');

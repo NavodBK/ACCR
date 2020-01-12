@@ -52,6 +52,7 @@ class HomeController extends Controller
         $vehicle = new vehicles;
         $vehicle->regNum = $request->regNum;
         $vehicle->model = $request->model;
+        $vehicle->type = $request->type;
         $vehicle->manufac = $request->manufac;
         $vehicle->color = $request->color;
         $vehicle->insPNo = $request->insPNo;
@@ -77,6 +78,7 @@ class HomeController extends Controller
             ->update([
                 'regNum' => $request->regNum,
                 'manufac' =>$request->manufac,
+                'type' =>$request->type,
                 'model' => $request->model,
                 'color' => $request->color,
                 'insPNo' => $request->insPNo,
@@ -84,8 +86,8 @@ class HomeController extends Controller
             ]);
         return redirect(route('home'));
     }
-    public function vehicleDelete( $id){
-        $vehicle = vehicles::where('regNum',$id)->first();
+    public function vehicleDelete(Request $request){
+        $vehicle = vehicles::find($request->id);
         $vehicle->delete();
         return redirect(route('home'));
         //return $id;
