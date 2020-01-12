@@ -30,8 +30,9 @@ class admin_adminsController extends Controller
         $admin->save();
         return redirect(route('admin.admins'));
     }
-    public function destroy($id) {
-       admin::destroy($id);
-        return redirect(route('admin.admins'));
+    public function destroy(Request $id) {
+
+       admin::destroy($id->id);
+       return redirect(route('admin.admins'));
     }
 }

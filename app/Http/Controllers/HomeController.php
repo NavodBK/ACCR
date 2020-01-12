@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\vehicles;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,14 +33,8 @@ class HomeController extends Controller
         $user_id = $user->nic;
         $vehicles = (object)vehicles::where('driverId','=',$user_id)->get();
 
-        $data = array([
-            'vehicles'=>$vehicles,
-            'user'=>$user,
-        ]);
-
-
         //return $data;
-        return view('home')->with('vehicles',$vehicles)->with('user',$user);
+        return view('home')->with('vehicles',$vehicles)->with('user',$user)->with('vehicles',$vehicles);
 
     }
     public function vehicleStore(Request $request)
@@ -109,7 +105,8 @@ class HomeController extends Controller
         ]);
 
 
-        $user = Auth::user();
+        $userNic = Auth::user()->id;
+        $user = App\User::find($userNic);
         $user ->fName = $request['fName'];
         $user->lName = $request['lName'];
         $user->address=$request['address'];

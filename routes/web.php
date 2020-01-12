@@ -38,7 +38,7 @@ Route::prefix('admin')->group(function (){
 
     Route::get('/admins', 'admin_adminsController@index')->name('admin.admins');
     Route::post('/admins/new', 'admin_adminsController@store')->name('admin.admins.new');
-    Route::post('admins/delete','admin_adminsController@destroy');
+    Route::post('admins/delete','admin_adminsController@destroy')->name('admin.admins.delete');
 
     Route::get('/rda', 'admin_rdaController@index')->name('admin.rda');
     Route::post('/rda/new', 'admin_rdaController@store')->name('admin.rda.new');

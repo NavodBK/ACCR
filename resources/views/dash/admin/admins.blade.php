@@ -133,7 +133,12 @@
                                                     <td>{{$admin ->nic}}</td>
                                                     <td>{{$admin->fName}} {{$admin->lName}}</td>
                                                     <td>{{$admin->email}} </td>
-                                                    <td><a href="/admins/delete/{{ $admin->id }}"><button type="button"  class="btn btn-danger">Delete</button></a></td>
+                                                    <form action="{{route('admin.admins.delete')}}" method="post">
+                                                        @csrf
+                                                        <input type="text" name="id" hidden value="{{$admin->id}}">
+                                                        <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                                                    </form>
+
                                                 </tr>
 
                                             </tbody>
