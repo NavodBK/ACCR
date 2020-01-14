@@ -28,4 +28,8 @@ class admin_rdaController extends Controller
         $rda->save();
         return redirect(route('admin.rda'));
     }
+    public function destroy(Request $id) {
+        rda::destroy($id->id);
+        return redirect(route('admin.ins'));
+    }
 }

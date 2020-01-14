@@ -136,8 +136,11 @@
                                                 <td>{{$policeMan ->nic}}</td>
                                                 <td>{{$policeMan->fName}} {{$policeMan->lName}}</td>
                                                 <td>{{$policeMan->email}}</td>
-                                                <td><button type="button" class="btn btn-success">Update</button></td>
-                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                                <form action="{{route('admin.police.delete')}}" method="post">
+                                                    @csrf
+                                                    <input type="text" name="id" hidden value="{{$policeMan->id}}">
+                                                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                                                </form>
                                             </tr>
 
                                             </tbody>
