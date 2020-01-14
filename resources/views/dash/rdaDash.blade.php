@@ -34,16 +34,28 @@
                             @if($report->confirm == false)
                                     <div class="card">
                                         {{$url = $report->url}}
-                                        <img class="card-img-top" src="{{asset('img/report/'.'/'.$url)}}" alt="Card image">
-                                        <div class="card-header">{{$report->regNum}}</div>
+                                        <img class="card-img-top" src="{{asset('img/report/'.'/'.$url)}}" alt="Card image" style="width:400px;height:400px;>
+                                        <div class="card-header"> <h3>{{$report->regNum}}</h3> </div>
                                         <div class="card-body" style = "width:100%">
-                                            <p>{{$report->info}}</p>
-                                            <p>{{$report->driverId}}</p>
-                                            <p>{{$report->dnt}}</p>
-                                            <p>{{$report->type}}</p>
-                                            <p>{{$report->injured}}</p>
-                                            <p>{{$report->death}}</p>
-                                            <p>{{$report->numOfVehicle}}</p>
+
+                                            <p>Additional Information : {{$report->info}}</p>
+                                            <p>Driver ID : {{$report->driverId}}</p>
+                                            <p>Date and Time : {{$report->dnt}}</p>
+                                            <p>Acciedent Type : {{$report->type}}</p>
+                                            <p>Number of Injured People : {{$report->injured}}</p>
+                                            <p>Number of Married People : {{$report->death}}</p>
+                                            <p>Number of Vehicles Invloved : {{$report->numOfVehicle}}</p>
+                                            <div class="form-group">
+                                                <label for="sel1">Select Level of the Accident : </label>
+                                                <select class="form-control" id="sel1">
+                                                    <option>Small</option>
+                                                    <option>Medium</option>
+                                                    <option>High</option>
+                                                </select>
+                                            </div>
+
+                                            <button type="button" class="btn btn-success">Submit</button>
+                                            <button type="button" class="btn btn-warning">Delete</button>
 
                                         </div>
                                     </div>
