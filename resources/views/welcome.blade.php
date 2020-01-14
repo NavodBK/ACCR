@@ -28,25 +28,13 @@
     <div class="row">
         <div class="col">
 
-            <div id="map" style="width:100%;height:500px;"></div>
+            <div id="map" style="width:100%;height:500px;">
+                <div style="width: 1110px; height: 500px;">
+                    {!! Mapper::render() !!}
+                </div>
+            </div>
 
 
-            <script>
-
-                function myMap() {
-
-                    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                    var myCenter = new google.maps.LatLng(6.9271, 79.8612);
-                    var mapCanvas = document.getElementById("map");
-                    var mapOptions = {center: myCenter, zoom: 16};
-                    var map = new google.maps.Map(mapCanvas, mapOptions);
-                    var marker = new google.maps.Marker({position:myCenter});
-                    marker.setMap(map);
-                }
-            </script>
-
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmDQvaGFw0yJ3O52ne38tcxnuR9IW97rs&callback=myMap"></script>
-        </div>
 
     </div>
     <br><br><br>

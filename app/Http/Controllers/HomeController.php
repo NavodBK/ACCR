@@ -41,14 +41,14 @@ class HomeController extends Controller
     }
     public function vehicleStore(Request $request)
     {
-//        $request->validate([
-//            'regNum'=>['required','string','max:8','min:5'],
-//            'manufac'=>['required'],
-//            'model'=>['required'],
-//            'color'=>['required'],
-//            'insPNo'=>['required'],
-//            'insProvider'=>['required'],
-//        ]);
+        $request->validate([
+            'regNum'=>['required','string','max:8','min:5'],
+            'manufac'=>['required'],
+            'model'=>['required'],
+            'color'=>['required'],
+            'insPNo'=>['required'],
+            'insProvider'=>['required'],
+        ]);
 
         $did = Auth::user()->nic;
         $vehicle = new vehicles;
@@ -66,14 +66,14 @@ class HomeController extends Controller
     }
     public function vehicleUpdate(Request $request)
     {
-//        $request->validate([
-//            'regNum'=>['required','string','max:8','min:5'],
-//            'manufac'=>['required'],
-//            'model'=>['required'],
-//            'color'=>['required'],
-//            'insPNo'=>['required'],
-//            'insProvider'=>['required'],
-//        ]);
+        $request->validate([
+            'regNum'=>['required','string','max:8','min:5'],
+            'manufac'=>['required'],
+            'model'=>['required'],
+            'color'=>['required'],
+            'insPNo'=>['required'],
+            'insProvider'=>['required'],
+        ]);
 
         DB::table('vehicles')
             ->where('regNum',$request->regNum)

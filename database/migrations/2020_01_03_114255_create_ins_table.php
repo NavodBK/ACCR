@@ -19,8 +19,8 @@ class CreateInsTable extends Migration
             $table->string('company');
             $table->string('lName');
             $table->string('nic')->unique();
-            $table->integer('phone')->unique();
-            $table->string('email')->unique();
+            $table->integer('phone');
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -3,6 +3,7 @@
     <div class="container">
 
 
+
         <div class="container py-5">
             <div class="p-5 bg-white rounded shadow mb-5">
 
@@ -22,40 +23,33 @@
                 <div id="myTab1Content" class="tab-content">
                     <div id="home1" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
 
-                        <div id="map" style="width:100%;height:400px;"></div>
-
-                        <script>
-
-                            function myMap() {
-
-                                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                                var myCenter = new google.maps.LatLng(6.9271, 79.8612);
-                                var mapCanvas = document.getElementById("map");
-                                var mapOptions = {center: myCenter, zoom: 16};
-                                var map = new google.maps.Map(mapCanvas, mapOptions);
-                                var marker = new google.maps.Marker({position:myCenter});
-
-                                //
-                                var myLatLng= {lat: 46.87916, lng: -3.32910};
-                                var marker = new google.maps.Marker({
-                                    position: myLatLng,
-                                    map: map,
-                                    title: 'Hello World!'
-                                });
-
-                                //
-
-                            }
 
 
-                        </script>
+                        <div id="map" style="width:100%;height:400px;">
+                            <div style="width: 900px; height: 500px;">
+                                {!! Mapper::render() !!}
+                            </div>
+                        </div>
+                        @foreach($reports as $report)
+                            @if($report->confirm == false)
+                                <div class="card">
+                                    {{$url = $report->url}}
+                                    <img class="card-img-top" src="{{asset('img/report/'.'/'.$url)}}" alt="Card image">
+                                    <div class="card-header">{{$report->regNum}}</div>
+                                    <div class="card-body" style = "width:100%">
+                                        <p>{{$report->info}}</p>
+                                        <p>{{$report->driverId}}</p>
+                                        <p>{{$report->dnt}}</p>
+                                        <p>{{$report->type}}</p>
+                                        <p>{{$report->injured}}</p>
+                                        <p>{{$report->death}}</p>
+                                        <p>{{$report->numOfVehicle}}</p>
 
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmDQvaGFw0yJ3O52ne38tcxnuR9IW97rs&callback=myMap"></script>
-
-
-
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
-
                     <div id="profile1" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
                         <div class="row">
                             <div class="col">
@@ -64,24 +58,25 @@
                                         Accident Average
                                     </div>
                                     <div class="card-body">
-                                        <div class="col"> <div class="chart-area" style="height:400px;width:800px;padding: 0;padding-top: 16px;padding-right: 0;margin-right: 0px;"><canvas data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,&quot;June&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Revenue&quot;,&quot;backgroundColor&quot;:&quot;#4e73df&quot;,&quot;borderColor&quot;:&quot;#4e73df&quot;,&quot;data&quot;:[&quot;65&quot;,&quot;65&quot;,&quot;64&quot;,&quot;65&quot;,&quot;67&quot;,&quot;67&quot;,&quot;68&quot;],&quot;fill&quot;:true}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:true,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas></div>
+                                        <div class="col"> <div class="chart-area" style="height:400px;width:800px;padding: 0;padding-top: 16px;padding-right: 0;margin-right: 0px;">
+                                                <canvas data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,&quot;June&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Revenue&quot;,&quot;backgroundColor&quot;:&quot;#4e73df&quot;,&quot;borderColor&quot;:&quot;#4e73df&quot;,&quot;data&quot;:[&quot;{{$accData[0][0]}}&quot;,&quot;{{$accData[0][1]}}&quot;,&quot;{{$accData[0][2]}}&quot;,&quot;{{$accData[0][3]}}&quot;,&quot;{{$accData[0][4]}}&quot;,&quot;{{$accData[0][5]}}&quot;,&quot;15&quot;,&quot;20&quot;],&quot;fill&quot;:true}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:true,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas></div>
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col">
 
-                                    <div class="card">
-                                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                                            <div class="card-title">
-                                                Injuries and Casualities
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="col">    <div class="chart-area" style="height:400px;width:800px;padding: 0;padding-top: 16px;padding-right: 0;margin-left: 0px;"><canvas data-bs-chart="{&quot;type&quot;:&quot;bar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Deaths&quot;,&quot;backgroundColor&quot;:&quot;#ef2b2d&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;,&quot;borderWidth&quot;:&quot;1&quot;,&quot;data&quot;:[&quot;12&quot;,&quot;15&quot;,&quot;11&quot;,&quot;14&quot;,&quot;10&quot;,&quot;15&quot;,&quot;8&quot;,&quot;9&quot;,&quot;12&quot;,&quot;8&quot;,&quot;12&quot;,&quot;10&quot;]},{&quot;label&quot;:&quot;Injuries&quot;,&quot;backgroundColor&quot;:&quot;#f96b07&quot;,&quot;data&quot;:[&quot;15&quot;,&quot;25&quot;,&quot;16&quot;,&quot;17&quot;,&quot;20&quot;,&quot;23&quot;,&quot;15&quot;,&quot;16&quot;,&quot;18&quot;,&quot;23&quot;,&quot;22&quot;,&quot;16&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:true,&quot;position&quot;:&quot;top&quot;},&quot;title&quot;:{&quot;display&quot;:false},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;#0080ff&quot;,&quot;zeroLineColor&quot;:&quot;#0080ff&quot;,&quot;drawBorder&quot;:true,&quot;drawTicks&quot;:true,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:true},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#141654&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;#0080ff&quot;,&quot;zeroLineColor&quot;:&quot;#0080ff&quot;,&quot;drawBorder&quot;:true,&quot;drawTicks&quot;:true,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#141654&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}]}}}"></canvas></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {{--                                    <div class="card">--}}
+                                    {{--                                        <div class="card shadow p-3 mb-5 bg-white rounded">--}}
+                                    {{--                                            <div class="card-title">--}}
+                                    {{--                                                Injuries and Casualities--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                            <div class="card-body">--}}
+                                    {{--                                                <div class="col">    <div class="chart-area" style="height:400px;width:800px;padding: 0;padding-top: 16px;padding-right: 0;margin-left: 0px;"><canvas data-bs-chart="{&quot;type&quot;:&quot;bar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Deaths&quot;,&quot;backgroundColor&quot;:&quot;#ef2b2d&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;,&quot;borderWidth&quot;:&quot;1&quot;,&quot;data&quot;:[&quot;{{$accCasual[0][0][0][0]}}&quot;,&quot;{{$accCasual[0][1][0]['death']}}&quot;,&quot;{{$accCasual[0][2][0]['death']}}&quot;,&quot;{{$accCasual[0][3][0]['death']}}&quot;,&quot;{{$accCasual[0][4][0]['death']}}&quot;,&quot;{{$accCasual[0][5][0]['death']}}&quot;,&quot;{{$accCasual[0][6][0]['death']}}&quot;,&quot;{{$accCasual[0][7][0]['death']}}&quot;,&quot;{{$accCasual[0][8][0]['death']}}&quot;,&quot;{{$accCasual[0][9][0]['death']}}&quot;,&quot;{{$accCasual[0][11][0]['death']}}&quot;,&quot;{{$accCasual[0][11][0]['death']}}&quot;]},{&quot;label&quot;:&quot;Injuries&quot;,&quot;backgroundColor&quot;:&quot;#f96b07&quot;,&quot;data&quot;:[&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;,&quot;{{$accCasual[0][0][0]['injured']}}&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:true,&quot;position&quot;:&quot;top&quot;},&quot;title&quot;:{&quot;display&quot;:false},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;#0080ff&quot;,&quot;zeroLineColor&quot;:&quot;#0080ff&quot;,&quot;drawBorder&quot;:true,&quot;drawTicks&quot;:true,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:true},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#141654&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;#0080ff&quot;,&quot;zeroLineColor&quot;:&quot;#0080ff&quot;,&quot;drawBorder&quot;:true,&quot;drawTicks&quot;:true,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#141654&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}]}}}"></canvas></div>--}}
+                                    {{--                                                </div>--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </div>--}}
 
                                     <div class="row">
                                         <div class="col">
@@ -116,37 +111,18 @@
                                 </thead>
                                 <tbody>
                                 @foreach($reports as $report)
-                                <tr>
-                                    <td>{{$report->dnt}}</td>
-                                    <td>{{$report->regNum}}</td>
-                                    <td>{{$report->info}}</td>
-                                    <td>Unconfirmed</td>
-                                </tr>
+                                    @if($report->confirm == true)
+                                        <tr>
+                                            <td>{{$report->dnt}}</td>
+                                            <td>{{$report->regNum}}</td>
+                                            <td>{{$report->info}}</td>
+                                            <td>Unconfirmed</td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>
 
-                            <table class="table table-light table-hover" style="margin-top: 25px;">
-                                <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Vehicle ID</th>
-                                    <th>Description</th>
-                                    <th>Status</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($confirmed as $confirmedR)
-                                    <tr>
-                                        <td>{{$confirmedR->dnt}}</td>
-                                        <td>{{$confirmedR->regNum}}</td>
-                                        <td>{{$confirmedR->info}}</td>
-                                        <td>Unconfirmed</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
                         </div>
 
 

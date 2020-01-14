@@ -26,6 +26,8 @@ class CreateReportsTable extends Migration
             $table->string('lat');
             $table->string('lon');
             $table->string('severity');
+            $table->string('url');
+            $table->boolean('confirm');
             $table->timestamps();
         });
     }

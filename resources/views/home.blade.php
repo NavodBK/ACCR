@@ -283,12 +283,16 @@
                         <div class="container">
 
 
-                            <form action="{{route('user.report.submit')}}" class="was-validated" method="post">
+                            <form action="{{route('user.report.submit')}}" class="was-validated" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
+                                    <input type="text" name="lat" id="lat" value="" hidden required>
+                                    <input type="text" name="lon" id="lang" value="" hidden required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please select the location.</div>
+                                </div>
+                                <div class="form-group">
                                     <label for="rnumbe">Vehicle ID:</label>
-                                    <input type="text" name="lat" id="lat" value="" hidden>
-                                    <input type="text" name="lon" id="lang" value="" hidden>
                                     <input type="text" name="driverId" hidden value="{{$user->nic}}">
                                     <select class="form-control" required name="regNum">
                                         @foreach($vehicles as $vehicle)
@@ -299,6 +303,7 @@
                                     <div class="invalid-feedback">Please fill out this field.</div>
 
                                 </div>
+
                                 <div class="form-group">
                                     <label for="rnumbe">Date and Time:</label>
                                     <input type="datetime-local" class="form-control" id="color" name="dnt" required>
@@ -349,7 +354,7 @@
                                     </label>
                                     <div class="col-sm-9">
                             <span class="btn btn-default btn-file">
-                                <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="true" data-show-caption="true">
+                                <input type="file" class="form-control" name="image" multiple />
                             </span>
                                     </div>
 
