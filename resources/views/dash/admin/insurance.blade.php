@@ -155,8 +155,11 @@
                                                 <td>{{$insS ->nic}}</td>
                                                 <td>{{$insS->fName}} {{$insS->lName}}</td>
                                                 <td>{{$insS->email}} </td>
-                                                <td><button type="button" class="btn btn-success">Update</button></td>
-                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                                <form action="{{route('admin.ins.delete')}}" method="post">
+                                                    @csrf
+                                                    <input type="text" name="id" hidden value="{{$insS->id}}">
+                                                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                                                </form>
                                             </tr>
 
                                             </tbody>

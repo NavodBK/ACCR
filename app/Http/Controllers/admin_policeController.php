@@ -30,4 +30,8 @@ class admin_policeController extends Controller
         $police->save();
         return redirect(route('admin.police'));
     }
+    public function destroy(Request $id) {
+        police::destroy($id->id);
+        return redirect(route('admin.police'));
+    }
 }

@@ -138,8 +138,11 @@
                                                 <td>{{$rdaS ->nic}}</td>
                                                 <td>{{$rdaS->fName}} {{$rdaS->lName}}</td>
                                                 <td>{{$rdaS->email}} </td>
-                                                <td><button type="button" class="btn btn-success">Update</button></td>
-                                                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                                <form action="{{route('admin.rda.delete')}}" method="post">
+                                                    @csrf
+                                                    <input type="text" name="id" hidden value="{{$rdaS->id}}">
+                                                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
+                                                </form>
                                             </tr>
 
                                             </tbody>

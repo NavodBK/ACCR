@@ -29,4 +29,8 @@ class admin_insController extends Controller
         $ins->save();
         return redirect(route('admin.ins'));
     }
+    public function destroy(Request $id) {
+        ins::destroy($id->id);
+        return redirect(route('admin.ins'));
+    }
 }
