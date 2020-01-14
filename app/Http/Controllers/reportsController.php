@@ -45,8 +45,31 @@ class reportsController extends Controller
 
 
     public function destroy(Request $id) {
-
         report::destroy($id->id);
-        return redirect(route('home'));
+
+        return redirect()->back();
+    }
+    public function  confirm(Request $request){
+        $id = $request->id;
+        $seve = $request->seve;
+        if ($seve == 'Small'){
+            $report = report::find($id);
+            $report->severity = '1';
+            $report->confirm = true;
+            $report->save();
+        }
+        elseif ($seve == 'Medium'){
+            $report = report::find($id);
+            $report->severity = '2';
+            $report->confirm = true;
+            $report->save();
+        }
+        else{
+            $report = report::find($id);
+            $report->severity = '3';
+            $report->confirm = true;
+            $report->save();
+        }
+        return redirect()->back();
     }
 }

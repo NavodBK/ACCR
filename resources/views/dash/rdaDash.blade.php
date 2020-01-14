@@ -25,26 +25,51 @@
 
 
 
-                        <div id="map" style="width:100%;height:400px;">
+                        <div id="map" style="width:100%;height:400px; margin-bottom: 100px;">
                             <div style="width: 900px; height: 500px;">
                                 {!! Mapper::render() !!}
                             </div>
                         </div>
                         @foreach($reports as $report)
                             @if($report->confirm == false)
-                                <div class="card">
-                                    {{$url = $report->url}}
-                                    <img class="card-img-top" src="{{asset('img/report/'.'/'.$url)}}" alt="Card image">
-                                    <div class="card-header">{{$report->regNum}}</div>
+                                {{$url = $report->url}}
+                                <div class="card" style="margin-top: 25px;">
+                                    <div class="card">
+                                    <div class="card-header"><h2 class="card-title">{{$report->regNum}}</h2>
+                                        <h3 class="card-title"> Report ID :{{$report->id}} </h3>
+                                        <img class="card-img-top" src="{{asset('img/report/'.'/'.$url)}}" alt="Card image"style="width:400px;height:400px;>
+                                    </div>
                                     <div class="card-body" style = "width:100%">
-                                        <p>{{$report->info}}</p>
-                                        <p>{{$report->driverId}}</p>
-                                        <p>{{$report->dnt}}</p>
-                                        <p>{{$report->type}}</p>
-                                        <p>{{$report->injured}}</p>
-                                        <p>{{$report->death}}</p>
-                                        <p>{{$report->numOfVehicle}}</p>
 
+                                        <p>Additional Information : {{$report->info}}</p>
+                                        <p>Driver ID : {{$report->driverId}}</p>
+                                        <p>Date and Time : {{$report->dnt}}</p>
+                                        <p>Accident Type : {{$report->type}}</p>
+                                        <p>Number of Injured People : {{$report->injured}}</p>
+                                        <p>Number of Deaths : {{$report->death}}</p>
+                                        <p>Number of Vehicles Involved : {{$report->numOfVehicle}}</p>
+                                        <form action="{{route('report.confirm')}}" method="post">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="sel1">Select Level of the Accident : </label>
+                                                <select class="form-control" name="seve" id="sell">
+                                                    <option>Small</option>
+                                                    <option>Medium</option>
+                                                    <option>High</option>
+                                                </select>
+                                            </div>
+                                            <input type="text" name="id" hidden value="{{$report->id}}">
+                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        </form>
+
+
+                                        <form action="{{route('report.delete')}}" method="post">
+                                            @csrf
+                                            <input type="text" name="id" hidden value="{{$report->id}}">
+                                        <button type="submit" class="btn btn-danger" >Delete</button>
+                                        </form>
+
+                                    </div>
                                     </div>
                                 </div>
                             @endif
@@ -105,7 +130,6 @@
                                     <th>Date</th>
                                     <th>Vehicle ID</th>
                                     <th>Description</th>
-                                    <th>Status</th>
 
                                 </tr>
                                 </thead>
@@ -116,7 +140,6 @@
                                             <td>{{$report->dnt}}</td>
                                             <td>{{$report->regNum}}</td>
                                             <td>{{$report->info}}</td>
-                                            <td>Unconfirmed</td>
                                         </tr>
                                     @endif
                                 @endforeach

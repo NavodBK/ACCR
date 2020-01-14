@@ -16,6 +16,8 @@ Route::get('/', 'welcomeController@index')->name('welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/report/delete', 'reportsController@destroy')->name('report.delete');
+Route::post('/report/confirm', 'reportsController@confirm')->name('report.confirm');
 
 Route::prefix('user')->group(function (){
     Route::post('/vehicle/update', 'homeController@vehicleUpdate')->name('vehicle.update');

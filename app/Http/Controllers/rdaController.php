@@ -65,7 +65,7 @@ class rdaController extends Controller
 
         Mapper::map(7.8731,80.7718,[ 'center' => true, 'marker' => false]);
         foreach ($reports as $report) {
-            if ($report->confirm == true) {
+
                 $regNum=$report->regNum;
                 $type = $report->type;
                 $reportId = $report->id;
@@ -78,7 +78,7 @@ class rdaController extends Controller
                 }
 //            Mapper::informationWindow($report->lat, $report->lon, $report->info);
 //            Mapper::marker($report->lat, $report->lon);
-            }
+
         }
         return view('dash/rdaDash')->with('reports',$reports)->with('accData',$accData);
     }
