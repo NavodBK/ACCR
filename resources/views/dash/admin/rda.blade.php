@@ -1,172 +1,150 @@
 ﻿@extends('layouts.dashLayout')
 @section('content')
-<body id="page-top">
-    <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
-            <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-
-                    <div class="sidebar-brand-text mx-3"><img src={{asset('img/siteImg/logo.png')}} style="width:180px;height:60px;" ></div>
-                </a>
-                <hr class="sidebar-divider my-0">
-                    <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('admin')}}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link " href="{{route('admin.admins')}}"><i class="fas fa-user"></i><span>Admin</span></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('admin.police')}}"><i class="fas fa-table"></i><span>Police</span></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('admin.rda')}}"><i class="fas fa-window-maximize"></i><span>RDA</span></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{route('admin.ins')}}"><i class="fas fa-window-maximize"></i><span>Insuarance</span></a></li>
-                    </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
-            </div>
-        </nav>
-        <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
-
-                <div class="container-fluid">
-                    <div class="p-5 bg-white rounded shadow mb-5">
-
-
-                        <!-- Bordered tabs-->
-                        <ul id="myTab1" role="tablist" class="nav nav-tabs nav-pills with-arrow flex-column flex-sm-row text-center">
-                            <li class="nav-item flex-sm-fill">
-                                <a id="contact1-tab" data-toggle="tab" href="#dprofile" role="tab" aria-controls="contact1" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0 border">add new rda staff members</a>
-                            </li>
-
-                            <li class="nav-item flex-sm-fill">
-                                <a id="contact1-tab" data-toggle="tab" href="#record" role="tab" aria-controls="contact1" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0 border">rda members</a>
-                            </li>
+    <div class="container">
 
 
 
+        <div class="container py-5">
+            <div class="p-5 bg-white rounded shadow mb-5">
 
-                        </ul>
-                        <div id="myTab1Content" class="tab-content">
-                            <div id="dprofile" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
-                                <div class="container">
-                                    <p>Change or update admin profile</p>
-                                    <form action="{{route('admin.rda.new')}}" method="post" class="was-validated">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label for="firstName">First Name:</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="fName" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="lastName">Last Name:</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" name="lName" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">E mail:</label>
-                                            <input type="text" class="form-control" id="email" placeholder="aaa@bbb.xxx" name="email" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="address">Phone number</label>
-                                            <input type="text" class="form-control" id="address" placeholder="Enter Division" name="phone" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="identity">NIC / Passport ID:</label>
-                                            <input type="text" class="form-control" id="identity" placeholder="Enter NIC/ Passport ID" name="nic" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="pwd">Password:</label>
-                                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pwd">Password (Repeat):</label>
-                                            <input type="password" class="form-control" id="pwd" placeholder="Enter password (Repeat)" name="pswd" required>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
+                <!-- Bordered tabs-->
+                <ul id="myTab1" role="tablist" class="nav nav-tabs nav-pills with-arrow flex-column flex-sm-row text-center">
+                    <li class="nav-item flex-sm-fill">
+                        <a id="home1-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home1" aria-selected="true" class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0 border active">Map</a>
+                    </li>
+                    <li class="nav-item flex-sm-fill">
+                        <a id="profile1-tab" data-toggle="tab" href="#profile1" role="tab" aria-controls="profile1" aria-selected="false" class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0 border">Analys</a>
+                    </li>
+                    <li class="nav-item flex-sm-fill">
+                        <a id="contact1-tab" data-toggle="tab" href="#contact1" role="tab" aria-controls="contact1" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0 border">Complaints</a>
+                    </li>
+                </ul>
+                <div id="myTab1Content" class="tab-content">
+                    <div id="home1" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
 
 
 
-
-
-                                        <div class="form-group form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox" name="remember" required> I agree on terms and conditions.
-                                                <div class="valid-feedback">Valid.</div>
-                                                <div class="invalid-feedback">Check this checkbox to continue.</div>
-                                            </label>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </form>
-                                </div>
-
-
-
+                        <div id="map" style="width:100%;height:400px;">
+                            <div style="width: 900px; height: 500px;">
+                                {!! Mapper::render() !!}
                             </div>
+                        </div>
+                        @foreach($reports as $report)
+                            @if($report->confirm == false)
+                                <div class="card">
+                                    {{$url = $report->url}}
+                                    <img class="card-img-top" src="{{asset('img/report/'.'/'.$url)}}" alt="Card image">
+                                    <div class="card-header">{{$report->regNum}}</div>
+                                    <div class="card-body" style = "width:100%">
+                                        <p>{{$report->info}}</p>
+                                        <p>{{$report->driverId}}</p>
+                                        <p>{{$report->dnt}}</p>
+                                        <p>{{$report->type}}</p>
+                                        <p>{{$report->injured}}</p>
+                                        <p>{{$report->death}}</p>
+                                        <p>{{$report->numOfVehicle}}</p>
 
-                            <div id="record" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
-                                <div class="container">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search this table">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-secondary" type="button">
-                                                <i class="fa fa-search"></i>
-                                            </button>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div id="profile1" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow p-3 mb-5 bg-white rounded">
+                                    <div class="card-title">
+                                        Accident Average
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col"> <div class="chart-area" style="height:400px;width:800px;padding: 0;padding-top: 16px;padding-right: 0;margin-right: 0px;">
+                                                <canvas data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,&quot;June&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Revenue&quot;,&quot;backgroundColor&quot;:&quot;#4e73df&quot;,&quot;borderColor&quot;:&quot;#4e73df&quot;,&quot;data&quot;:[&quot;{{$accData[0][0]}}&quot;,&quot;{{$accData[0][1]}}&quot;,&quot;{{$accData[0][2]}}&quot;,&quot;{{$accData[0][3]}}&quot;,&quot;{{$accData[0][4]}}&quot;,&quot;{{$accData[0][5]}}&quot;,&quot;15&quot;,&quot;20&quot;],&quot;fill&quot;:true}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:true,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+
+                                    <div class="card">
+                                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                                            <div class="card-title">
+                                                Injuries and Casualities
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="col">    <div class="chart-area" style="height:400px;width:800px;padding: 0;padding-top: 16px;padding-right: 0;margin-left: 0px;"><canvas data-bs-chart="{&quot;type&quot;:&quot;bar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Deaths&quot;,&quot;backgroundColor&quot;:&quot;#ef2b2d&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;,&quot;borderWidth&quot;:&quot;1&quot;,&quot;data&quot;:[&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;,&quot;98&quot;]},{&quot;label&quot;:&quot;Injuries&quot;,&quot;backgroundColor&quot;:&quot;#f96b07&quot;,&quot;data&quot;:[&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;,&quot;85&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:true,&quot;position&quot;:&quot;top&quot;},&quot;title&quot;:{&quot;display&quot;:false},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;#0080ff&quot;,&quot;zeroLineColor&quot;:&quot;#0080ff&quot;,&quot;drawBorder&quot;:true,&quot;drawTicks&quot;:true,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:true},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#141654&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;#0080ff&quot;,&quot;zeroLineColor&quot;:&quot;#0080ff&quot;,&quot;drawBorder&quot;:true,&quot;drawTicks&quot;:true,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#141654&quot;,&quot;beginAtZero&quot;:true,&quot;padding&quot;:20}}]}}}"></canvas></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <table class="table table-light table-hover">
+                                    {{--                                    <div class="row">--}}
+                                    {{--                                        <div class="col">--}}
+                                    {{--                                            <div class="card shadow p-3 mb-5 bg-white rounded">--}}
+                                    {{--                                                <div class="card-title">--}}
+                                    {{--                                                    Vehicle Type Average--}}
+                                    {{--                                                </div>--}}
+                                    {{--                                                <div class="card-body">--}}
+                                    {{--                                                    <div class="chart-area" style="height:400px;width:800px;padding: 0;padding-top: 16px;padding-right: 0;margin-right: 0px;"><canvas data-bs-chart="{&quot;type&quot;:&quot;pie&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Bike&quot;,&quot;Car&quot;,&quot;Bus&quot;,&quot;Lorry&quot;,&quot;Van&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Revenue&quot;,&quot;backgroundColor&quot;:[&quot;#0051ba&quot;,&quot;#e8112d&quot;,&quot;#fca311&quot;,&quot;#1eb53a&quot;,&quot;#60330a&quot;],&quot;borderColor&quot;:[&quot;#4e73df&quot;,&quot;#4e73df&quot;,&quot;#4e73df&quot;,&quot;#4e73df&quot;,&quot;#4e73df&quot;],&quot;data&quot;:[&quot;60&quot;,&quot;98&quot;,&quot;89&quot;,&quot;75&quot;,&quot;50&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:true,&quot;legend&quot;:{&quot;display&quot;:true,&quot;reverse&quot;:false},&quot;title&quot;:{&quot;display&quot;:false}}}"></canvas></div>--}}
 
-                                        <thead>
-                                        <tr>
-                                            <th>NIC / Passport ID</th>
-                                            <th>Name</th>
-                                            <th>EMAIL</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        @foreach($rda as $rdaS)
-                                            <tbody>
-                                            <tr>
-                                                <td>{{$rdaS ->nic}}</td>
-                                                <td>{{$rdaS->fName}} {{$rdaS->lName}}</td>
-                                                <td>{{$rdaS->email}} </td>
-                                                <form action="{{route('admin.rda.delete')}}" method="post">
-                                                    @csrf
-                                                    <input type="text" name="id" hidden value="{{$rdaS->id}}">
-                                                    <td><button type="submit" class="btn btn-danger">Delete</button></td>
-                                                </form>
-                                            </tr>
+                                    {{--                                                </div>--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                        </div>--}}
 
-                                            </tbody>
-                                        @endforeach()
-                                    </table>
+                                    {{--                                    </div>--}}
                                 </div>
-
-
-
-
-
-
-
                             </div>
+                        </div>
+                    </div>
+                    <div id="contact1" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
+                        <div class="container">
 
-                            <!-- End bordered tabs -->
+                            <table class="table table-light table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Vehicle ID</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($reports as $report)
+                                    @if($report->confirm == true)
+                                        <tr>
+                                            <td>{{$report->dnt}}</td>
+                                            <td>{{$report->regNum}}</td>
+                                            <td>{{$report->info}}</td>
+                                            <td>Unconfirmed</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                                </tbody>
+                            </table>
+
                         </div>
 
 
-
                     </div>
+                </div>
+                <!-- End bordered tabs -->
+            </div>
+
+            <div class="footer-basic">
+                <footer>
+
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#">Home</a></li>
+                        <li class="list-inline-item"><a href="#">Contact</a></li>
+                        <li class="list-inline-item"><a href="#">About</a></li>
+                        <li class="list-inline-item"><a href="#">Terms</a></li>
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                    </ul>
+                    <p class="copyright">TARS © 2020 Powered by Government of Sri Lanka </p>
+                </footer>
+
+            </div>
 
         </div>
-            </div></div></div>
-</body>
 @endsection
-
