@@ -5,11 +5,44 @@ namespace App\Http\Controllers;
 use App\report;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class welcomeController extends Controller
 {
     public function index(){
+        $jan= DB::table("reports")
+            ->whereMonth('dnt', '=', '01')
+            ->get();
+        $jan =count($jan);
+
+        $feb= DB::table("reports")
+            ->whereMonth('dnt', '=', '02')
+            ->get();
+        $feb =count($feb);
+
+        $mar= DB::table("reports")
+            ->whereMonth('dnt', '=', '03')
+            ->get();
+        $mar =count($mar);
+
+        $ap= DB::table("reports")
+            ->whereMonth('dnt', '=', '04')
+            ->get();
+        $ap =count($ap);
+
+        $may= DB::table("reports")
+            ->whereMonth('dnt', '=', '05')
+            ->get();
+        $may =count($may);
+
+        $june= DB::table("reports")
+            ->whereMonth('dnt', '=', '06')
+            ->get();
+        $june =count($june);
+
+        $accData = array([$jan,$feb,$mar,$ap,$may,$june]);
         $reports = report::all();
+
         Mapper::map(7.8731,80.7718,['marker' => false,'zoom' => 8]);
         foreach ($reports as $report) {
             if ($report->confirm == true) {
@@ -27,7 +60,7 @@ class welcomeController extends Controller
 //            Mapper::marker($report->lat, $report->lon);
             }
         }
-        return view('welcome');
+        return view('welcome')->with('reports',$reports)->with('accData',$accData);
     }
 
 }
